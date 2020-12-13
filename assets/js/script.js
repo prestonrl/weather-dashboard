@@ -13,18 +13,24 @@ var searchedCity = function(event){
     //console.log(currentCity);
 
     if (currentCity) {
-        cities.push(currentCity);
         getCurrentWeather(currentCity);
         cityInputEl.value = "";
-        saveCity();
+        saveCity(currentCity);
     }
     else {
         alert("Please enter a city before searching");
     }
 };
 
-var saveCity = function () {
-    localStorage.setItem("cities", JSON.stringify(cities));
+var saveCity = function (currentCity) {
+    if (cities.indexOf(currentCity) !== -1) {
+        return;
+    } else {
+        cities.push(currentCity);
+        localStorage.setItem("cities", JSON.stringify(cities));
+        previousSearch(currentCity);
+    }
+    
 };
 
 var loadPrevious = function() {
