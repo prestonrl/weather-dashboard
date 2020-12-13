@@ -68,8 +68,28 @@ var loadWeather = function(weather, currentCity) {
 
     var theDate = document.createElement('span');
     theDate.textContent = " (" + moment().format('M/DD/YYYY') + ") ";
-    console.log(theDate);
+    //console.log(theDate);
     cityTitleEl.appendChild(theDate);
+
+    var weatherIcon = document.createElement('img');
+    weatherIcon.setAttribute("src", `https://openweathermap.org/img/wn/${weather.weather[0].icon}@2x.png`);
+    cityTitleEl.appendChild(weatherIcon);
+
+    var tempEl = document.createElement('span');
+    tempEl.textContent = "Temperature: " + weather.main.temp + " °F";
+    tempEl.classList = "list-group-item";
+
+    var humidityEl = document.createElement('span');
+    humidityEl.textContent = "Humidity: " + weather.main.humidity + "%";
+    humidityEl.classList = "list-group-item";
+
+    var windEl = document.createElement('span');
+    windEl.textContent = "Wind Speed: " + weather.wind.speed + " MPH";
+    windEl.classList = "list-group-item";
+
+    weatherDisplayEl.appendChild(tempEl);
+    weatherDisplayEl.appendChild(humidityEl);
+    weatherDisplayEl.appendChild(windEl);
 };
 
 
