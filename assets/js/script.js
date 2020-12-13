@@ -29,8 +29,7 @@ var saveCity = function (currentCity) {
         cities.push(currentCity);
         localStorage.setItem("cities", JSON.stringify(cities));
         previousSearch(currentCity);
-    }
-    
+    }   
 };
 
 var loadPrevious = function() {
@@ -66,6 +65,11 @@ var loadWeather = function(weather, currentCity) {
     weatherDisplayEl.textContent = "";
     cityTitleEl.textContent = currentCity;
     console.log(weather);
+
+    var theDate = document.createElement('span');
+    theDate.textContent = " (" + moment().format('M/DD/YYYY') + ") ";
+    console.log(theDate);
+    cityTitleEl.appendChild(theDate);
 };
 
 
