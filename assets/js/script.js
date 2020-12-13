@@ -154,12 +154,24 @@ var loadForecast = function(weather){
         var dayDate = document.createElement('h5');
         dayDate.textContent = moment.unix(dayWeather.dt).format('M/DD/YYYY');
         dayDate.classList = "card-header text-center";
-        forecastDisplayEl.appendChild(dayDate);
+        weatherForecastEl.appendChild(dayDate);
 
+        var weatherIcon = document.createElement("img")
+        weatherIcon.classList = "card-body text-center";
+        weatherIcon.setAttribute("src", `https://openweathermap.org/img/wn/${dayWeather.weather[0].icon}@2x.png`);  
+        weatherForecastEl.appendChild(weatherIcon);
 
+        var tempEl = document.createElement('span');
+        tempEl.textContent = "Temp: " + dayWeather.temp.day + " °F";
+        tempEl.classList = "card-body text-center";
+        weatherForecastEl.appendChild(tempEl);
 
+        var humidityEl = document.createElement('span');
+        humidityEl.textContent = "Humidity: " + dayWeather.humidity + "%";
+        humidityEl.classList = "card-body text-center";
+        weatherForecastEl.appendChild(humidityEl);
 
-        //forecastDisplayEl.appendChild(weatherForecastEl);
+        forecastDisplayEl.appendChild(weatherForecastEl);
     }
 };
 
