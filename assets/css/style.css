@@ -1,3 +1,23 @@
 .list-group-item{
     border: 0;
 }
+
+.severe{
+    padding: 3px;
+    background-color: red;
+    color:white;
+    border-radius: .3rem;
+}
+
+.moderate{
+    padding: 3px;
+    background-color: yellow;
+    border-radius: .3rem;
+}
+
+.favorable{
+    padding: 3px;
+    background-color: green;
+    color:white;
+    border-radius: .3rem;
+}

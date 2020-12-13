@@ -90,8 +90,42 @@ var loadWeather = function(weather, currentCity) {
     weatherDisplayEl.appendChild(tempEl);
     weatherDisplayEl.appendChild(humidityEl);
     weatherDisplayEl.appendChild(windEl);
+
+    var latitude = weather.coord.lat;
+    var longitude = weather.coord.lon;
+    uvIndex(latitude, longitude);
 };
 
+var uvIndex = function(latitude, longitude) {
+    var apiSite = `https://api.openweathermap.org/data/2.5/uvi?appid=${apiKey}&lat=${latitude}&lon=${longitude}`;
+    fetch(apiSite)
+    .then(function(response) {
+        response.json().then(function(data){
+            loadUV(data);
+        });
+    });
+};
+
+var loadUV = function(data) {
+    var uvEl = document.createElement('div');
+    uvEl.textContent = "UV Index: ";
+    uvEl.classList = "list-group-item";
+
+    uvValue = document.createElement('span');
+    uvValue.textContent = data.value;
+
+    if (data.value <= 2) {
+        uvValue.classList = "favorable"
+    } else if (data.value > 2 && data.value <= 8) {
+        uvValue.classList = "moderate "
+    }
+    else if (data.value > 8) {
+        uvValue.classList = "severe"
+    };
+
+    uvEl.appendChild(uvValue);
+    weatherDisplayEl.appendChild(uvEl);
+};
 
 userFormEl.addEventListener("submit", searchedCity);
 loadPrevious();
