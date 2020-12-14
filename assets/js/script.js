@@ -5,6 +5,7 @@ var cityTitleEl = document.querySelector('#current-city');
 var weatherDisplayEl = document.querySelector('#weather-container');
 var forecastDisplayEl = document.querySelector('#forecast');
 var forecastTitleEl = document.querySelector('#forecast-title');
+var previousCityEl = document.querySelector('#previous-cities');
 var cities = [];
 var apiKey = "4e58e97fdd4f6e5374486a7e4a85fd81";
 
@@ -175,5 +176,13 @@ var loadForecast = function(weather){
     }
 };
 
+var previousSearchHandler = function(event) {
+    var city = event.target.getAttribute('data-city');
+    if (city) {
+        getCurrentWeather(city);
+    }
+};
+
 userFormEl.addEventListener("submit", searchedCity);
+previousCityEl.addEventListener("click", previousSearchHandler);
 loadPrevious();
